@@ -22,7 +22,7 @@ export const protectRoute = async (req, res, next) => {
       // console.log("Decoded Token:", decoded);
       // tim user tu token
       const user = await User.findById(decoded.userId).select("-hashPassword"); // khong tra ve password
-      console.log("Authenticated User:", user);
+      // console.log("Authenticated User:", user);
       if (!user) {
         return res.status(404).json({ message: "User khong ton tai" });
       }

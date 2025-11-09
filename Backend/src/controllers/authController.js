@@ -2,7 +2,7 @@ import bcrypt from 'bcrypt';
 import User from '../models/User.js';
 import jwt from 'jsonwebtoken';
 import crypto from 'crypto';
-import { Sesion } from '../models/Sesion.js';
+import  Sesion  from '../models/Sesion.js';
 
 const ACCESS_TOKEN_TTL='30m'; //30 phut
 const REFRESH_TOKEN_TTL=14*24*60*60*1000; //14 ngay
@@ -30,7 +30,7 @@ export const signUp = async (req, res) => {
             username,
             hashPassword:hashedPassword,
             email,
-            displayName: `${firstName} ${lastName}`
+            displayName: `${lastName} ${firstName}`
         });
 
         //return ket qua
@@ -123,7 +123,7 @@ export const refreshToken = async (req, res) => {
     }
 
     // so với refresh token trong db
-    const session = await Session.findOne({ refreshToken: token });
+    const session = await Sesion.findOne({ refreshToken: token });
 
     if (!session) {
       return res.status(403).json({ message: "Token không hợp lệ hoặc đã hết hạn" });

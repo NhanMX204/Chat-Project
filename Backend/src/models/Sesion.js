@@ -11,9 +11,13 @@ const sesionSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    expiresAt:{
+        type: Date,
+        required: true
+    }
 }, { timestamps: true });
 
 //tu dong xoa khi het han
-sesionSchema.index({ createdAt: 1 }, { expireAfterSeconds:0 }); // 14 ngay
+sesionSchema.index({ expiresAt: 1 }, { expireAfterSeconds:0 }); // 14 ngay
 
-export const Sesion = mongoose.model('Sesion', sesionSchema);
+export default mongoose.model("Sesion", sesionSchema);
